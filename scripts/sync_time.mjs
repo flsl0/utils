@@ -1,8 +1,12 @@
 import { createProxy } from "node-fetch-native/proxy";
 
-const proxy = createProxy({ url: "http://10.0.2.2:3128" });
+const useProxy = false
 
-const body = await fetch("https://time.is/", { ...proxy }).then(r => r.text())
+const _fetch = useProxy
+                ? async url => fetch(url, { ...createProxy({ url: "http://10.0.2.2:3128" }) })
+                : async url => fetch(url)
+
+const body = await _fetch("https://time.is/").then(r => r.text())
 
 const dom = require("cheerio").load(body)
 
