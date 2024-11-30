@@ -1,3 +1,14 @@
+/*
+ * Automatically synchronize the date of a computer
+ *
+ * It's recommended to create a /usr/local/bin/syncdate
+ * with the following content :
+ *
+ * #!/bin/sh
+ * zx /home/void/dev/utils/sync_time.mjs $@
+ *
+ */
+
 import { createProxy } from "node-fetch-native/proxy";
 
 const useProxy = false
