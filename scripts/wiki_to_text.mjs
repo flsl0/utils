@@ -10,17 +10,9 @@
  *
  */
 
-const defaultQuote = $.quote
+const print = async s => echo(s)
 
-$.quote = a => a
-
-$.verbose = false
-
-const print = async str => console.log(str)
-
-const exit = (code = 1) => process.exit(code)
-
-if (argv["_"].length < 1) await print("You must provide an url").then(exit)
+if (argv["_"].length < 1) await print("You must provide an url").then(process.exit(1))
 
 const body = await fetch(argv["_"][0]).then(r => r.text())
 
@@ -36,4 +28,4 @@ const text = dom("main p")
     .replaceAll("\n", "")
     .replaceAll(/(\.|:)\S+( |\n)/gm, "") // replace weird artifacts
 
-await $({ quote: defaultQuote })`echo ${text} > /home/void/audio/${title}`
+await $`echo ${text} > /home/void/audio/${title}`
