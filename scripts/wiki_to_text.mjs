@@ -10,9 +10,7 @@
  *
  */
 
-const print = async s => echo(s)
-
-if (argv["_"].length < 1) await print("You must provide an url").then(process.exit(1))
+if (argv["_"].length < 1) (echo("You must provide an url"), process.exit(1))
 
 const body = await fetch(argv["_"][0]).then(r => r.text())
 
